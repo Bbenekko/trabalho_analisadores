@@ -1,0 +1,14 @@
+escreva algo no terminal com ';' no final
+
+exemplo:
+./prog 
+1;
+The number you entered is - 1
+2;
+The number you entered is - 2
+a;
+Your entered a string - a
+10;
+The number you entered is - 10
+abluble;
+Your entered a string - abluble
