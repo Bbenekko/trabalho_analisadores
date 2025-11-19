@@ -500,7 +500,7 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    23,    23,    26,    27,    30,    33,    36
+       0,    24,    24,    27,    28,    31,    34,    37
 };
 #endif
 
@@ -1057,7 +1057,7 @@ yyreduce:
   switch (yyn)
     {
   case 5: /* stmt: STRING  */
-#line 30 "example.y"
+#line 31 "example.y"
                        {
 				printf("Your entered a string - %s", (yyvsp[0].name));
 		}
@@ -1065,7 +1065,7 @@ yyreduce:
     break;
 
   case 6: /* stmt: NUM  */
-#line 33 "example.y"
+#line 34 "example.y"
                       {
 				printf("The number you entered is - %d", (yyvsp[0].number));
 		}
@@ -1266,7 +1266,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 39 "example.y"
+#line 40 "example.y"
 
 
 int yyerror(char *s)

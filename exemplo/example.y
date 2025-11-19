@@ -9,13 +9,14 @@ int yyerror(char *s);
 
 %token STRING NUM OTHER SEMICOLON
 
-%type <name> STRING
-%type <number> NUM
-
 %union{
 	  char name[20];
     int number;
 }
+
+
+%type <name> STRING
+%type <number> NUM
 
 %%
 

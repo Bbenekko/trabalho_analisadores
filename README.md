@@ -4,7 +4,7 @@ To usando essa playlist como referência: https://www.youtube.com/watch?v=POjnw0
 <br>
 <br>
 Para criar um arquivo bison, o sufixo é ".y".
-Para executar, basta:
+Para compilar, basta:
 ``` 
 bison -d meu_programa.y 
 ```
@@ -12,7 +12,7 @@ Isso irá gerar um arquivo y.tab.c
 <br>
 <br>
 Para criar um arquivo lexico (flex), o sufixo é ".l".
-Para executar, basta:
+Para compilar, basta:
 ``` 
 flex lexer.l 
 ```
@@ -21,7 +21,7 @@ Isso irá gerar um arquivo lex.yy.c.
 <br>
 Para compila-lo, basta:
 ``` 
-gcc meu_programa.tab.c lex.yy.c -o prgrama -lfl
+gcc meu_programa.tab.c lex.yy.c -o programa -lfl
 ```
 e depois
 ``` 
