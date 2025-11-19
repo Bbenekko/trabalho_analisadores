@@ -7,16 +7,18 @@ int yyerror(char *s);
 
 %}
 
-%token STRING NUM OTHER SEMICOLON
+%token STRING NUM BOOL OTHER SEMICOLON
 
 %union{
-	  char name[20];
-    int number;
+	char name[20];
+    unsigned int number;
+    bool boolean;
 }
 
 
 %type <name> STRING
 %type <number> NUM
+%type <boolean> BOOL
 
 %%
 
@@ -29,10 +31,10 @@ stmts:
 
 stmt:
 		STRING {
-				printf("Your entered a string - %s\n", $1);
+				printf("Your entered a string - %s", $1);
 		}
 		| NUM {
-				printf("The number you entered is - %d\n", $1);
+				printf("The number you entered is - %d", $1);
 		}
 		| OTHER
 ;
