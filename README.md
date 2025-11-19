@@ -25,5 +25,5 @@ gcc meu_programa.tab.c lex.yy.c -o programa -lfl
 ```
 e depois
 ``` 
-./programa 
+./programa (< texto.txt)
 ```

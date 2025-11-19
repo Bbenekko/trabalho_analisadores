@@ -1,5 +1,5 @@
 
-#line 2 "lex.yy.c"
+#line 3 "lex.yy.c"
 
 #define  YY_INT_ALIGNED short int
 
@@ -452,14 +452,14 @@ char *yytext;
     
     void printError();
     int a;
-#line 455 "lex.yy.c"
+#line 456 "lex.yy.c"
 /* Após esse bloco, os comentários devem ser assim*/
 /* Expressões regulares */
 /* Exemplo */
 /*Especificações de token */
 /*Exemplo */
 /* NÃO ACEITA COMENTáRIOS */
-#line 462 "lex.yy.c"
+#line 463 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -679,7 +679,7 @@ YY_DECL
 #line 23 "example.l"
 
 
-#line 682 "lex.yy.c"
+#line 683 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -761,7 +761,7 @@ YY_RULE_SETUP
 #line 30 "example.l"
 ECHO;
 	YY_BREAK
-#line 764 "lex.yy.c"
+#line 765 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
