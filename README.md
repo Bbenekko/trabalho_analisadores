@@ -1,6 +1,9 @@
 # trabalho_analisadores
 
-Para criar um arquivo yacc, o sufixo é ".y".
+To usando essa playlist como referência: https://www.youtube.com/watch?v=POjnw0xEVas&list=PLIrl0f9NJZy4oOOAVPU6MyRdFjJFGtceu
+<br>
+<br>
+Para criar um arquivo bison, o sufixo é ".y".
 Para executar, basta:
 ``` 
 bison -d meu_programa.y 
@@ -8,7 +11,7 @@ bison -d meu_programa.y
 Isso irá gerar um arquivo y.tab.c
 <br>
 <br>
-Para criar um arquivo lexico, o sufixo é ".l".
+Para criar um arquivo lexico (flex), o sufixo é ".l".
 Para executar, basta:
 ``` 
 flex lexer.l 
