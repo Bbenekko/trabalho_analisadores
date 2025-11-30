@@ -1,0 +1,11 @@
+dispositivos :
+    Monitor
+    Celular [ movimento ]
+    Higrometro [ umidade ]
+    Lampada [ potencia ]
+fimdispositivos
+
+def umidade = 40 ;
+quando movimento == True : execute ligar em Lampada
+senao 
+quando umidade < 50 : alerta para Monitor : " Ar seco detectado " senao alerta para Monitor : " Ar molhado detectado " ;

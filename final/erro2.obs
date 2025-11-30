@@ -1,0 +1,9 @@
+dispositivos:
+    Display
+    Sensor_de_luz[iluminacao]
+fimdispositivo
+
+quando iluminacao > 0
+    alerta para Display: "Luz detectada!"
+senao 
+    alerta para Display: "Luz nao detectada!"
