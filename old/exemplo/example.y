@@ -1,0 +1,52 @@
+// Exemplo de arquivo Bison
+%{
+#include <stdio.h>
+
+int yylex();
+int yyerror(char *s);
+
+%}
+
+%token STRING NUM OTHER SEMICOLON
+
+%union{
+	  char name[20];
+    int number;
+}
+
+
+%type <name> STRING
+%type <number> NUM
+
+%%
+
+prog:
+  stmts
+;
+
+stmts:
+		| stmt SEMICOLON stmts
+
+stmt:
+		STRING {
+				printf("Your entered a string - %s\n", $1);
+		}
+		| NUM {
+				printf("The number you entered is - %d\n", $1);
+		}
+		| OTHER
+;
+
+%%
+
+int yyerror(char *s)
+{
+	printf("Syntax Error on line %s\n", s);
+	return 0;
+}
+
+int main()
+{
+    yyparse();
+    return 0;
+}

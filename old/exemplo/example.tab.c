@@ -1059,7 +1059,7 @@ yyreduce:
   case 5: /* stmt: STRING  */
 #line 31 "example.y"
                        {
-				printf("Your entered a string - %s", (yyvsp[0].name));
+				printf("Your entered a string - %s\n", (yyvsp[0].name));
 		}
 #line 1065 "example.tab.c"
     break;
@@ -1067,7 +1067,7 @@ yyreduce:
   case 6: /* stmt: NUM  */
 #line 34 "example.y"
                       {
-				printf("The number you entered is - %d", (yyvsp[0].number));
+				printf("The number you entered is - %d\n", (yyvsp[0].number));
 		}
 #line 1073 "example.tab.c"
     break;
