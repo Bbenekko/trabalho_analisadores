@@ -1,0 +1,2 @@
+quando temperatura > 30 :
+    alerta para Monitor: "Temperatura esta alta!";
