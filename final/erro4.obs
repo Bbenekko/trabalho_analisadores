@@ -1,0 +1,11 @@
+dispositivos:
+    SensorProximidade[movimento]
+    Celular
+    Alarme
+fimdispositivo
+
+quando SensorProximidade == True:
+    execute ligar em alarme;
+
+quando SensorProximidade == True:
+    execute alerta para Celular: "Intruso detectado!";

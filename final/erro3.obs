@@ -1,0 +1,15 @@
+dispositivos:
+    Led1
+    Led2
+    Led2_2
+    Termometro1 [1_temperatura]
+    Termemometro2 [2_temperatura]
+fimdispositivo
+
+quando 1_temperatura > 30
+    execute ligar em LEd1;
+
+quando 2_temperatura > 20
+    execute ligar em Led2
+senao
+    execute ligar em Led2_2;
