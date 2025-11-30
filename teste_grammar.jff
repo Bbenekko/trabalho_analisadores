@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><!--Created with JFLAP 7.1.--><structure>
+	<type>grammar</type>
+	<!--The list of productions.-->
+	<production>
+		<left>P</left>
+		<right>DEV_SEC CMD_SEC</right>
+	</production>
+	<production>
+		<left>DEV_SEC</left>
+		<right>dispositivos: DEV_LIST fimdispositvos</right>
+	</production>
+	<production>
+		<left>DEV_LIST</left>
+		<right>DEVICE DEV_LIST | DEVICE</right>
+	</production>
+	<production>
+		<left>DEVICE</left>
+		<right>ID_DEVICE </right>
+	</production>
+	<production>
+		<left>DEVICE</left>
+		<right>ID_DEVICE [ID_OBS]</right>
+	</production>
+	<production>
+		<left>CMD_SEC</left>
+		<right>CMD_LIST</right>
+	</production>
+	<production>
+		<left>CMD_LIST</left>
+		<right>CMD; CMD_LIST | CMD;</right>
+	</production>
+	<production>
+		<left>CMD</left>
+		<right>ATTRIB | OBSACT | ACT</right>
+	</production>
+	<production>
+		<left>ATTRIB</left>
+		<right>def ID_OBS = VAL</right>
+	</production>
+	<production>
+		<left>OBSACT</left>
+		<right>quando OBS : ACT</right>
+	</production>
+	<production>
+		<left>OBSACT</left>
+		<right>QUANDO OBS : ACT senao ACT</right>
+	</production>
+	<production>
+		<left>OBS</left>
+		<right>ID_OBS OPLOGIC VAL</right>
+	</production>
+	<production>
+		<left>OBS</left>
+		<right>ID_OBS OPLOGIC VAL AND OBS</right>
+	</production>
+	<production>
+		<left>VAL</left>
+		<right>NUM | BOOL</right>
+	</production>
+	<production>
+		<left>ACT</left>
+		<right>execute ACTION em ID_DEVICE</right>
+	</production>
+	<production>
+		<left>ACT</left>
+		<right>alerta para ID_DEVICE: MSG</right>
+	</production>
+	<production>
+		<left>ACT</left>
+		<right>alerta para ID_DEVICE: MSG , ID_OBS</right>
+	</production>
+	<production>
+		<left>ACT</left>
+		<right>difundir: MSG -&gt; [DEV_LIST_N]</right>
+	</production>
+	<production>
+		<left>ACT</left>
+		<right>difundir: MSG ID_OBS -&gt; [DEV_LIST_N]</right>
+	</production>
+	<production>
+		<left>ACTION</left>
+		<right>ligar | desligar</right>
+	</production>
+	<production>
+		<left>DEV_LIST_N</left>
+		<right>ID_DEVICE | ID_DEVICE , DEV_LIST_N</right>
+	</production>
+</structure>

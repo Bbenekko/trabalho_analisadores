@@ -7,13 +7,7 @@ int yyerror(char *s);
 
 %}
 
-%token STRING NUM BOOL OTHER SEMICOLON
-
-%union{
-	char name[20];
-    unsigned int number;
-    bool boolean;
-}
+%token 
 
 
 %type <name> STRING
