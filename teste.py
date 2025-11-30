@@ -10,16 +10,21 @@ class MyLexer(Lexer):
 
         # Identificadores e Valores
         'ID_DEVICE', 'ID_OBS', 'MSG', 
-        'NUM', 'BOOL',
+        'NUM', 'BOOL', 
         
         # Operadores
-        'OPLOGIC' 
+        'OPLOGIC',
+        'ARROW'
     }
 
     literals = {
         ':', '[', ']', ';', '=', 
         ',', '>', '-' 
     }
+
+    ALERTA_PARA = r'alerta\ para'
+
+    ARROW = r'->'
 
     OPLOGIC = r'(<=|>=|==|!=|<|>)'
 
@@ -34,7 +39,6 @@ class MyLexer(Lexer):
             'em': 'EM',
             'ligar': 'LIGAR', 
             'desligar': 'DESLIGAR',
-            'alerta para': 'ALERTA_PARA',
             'difundir': 'DIFUNDIR', 
             'and': 'AND',
             'TRUE': 'BOOL',
@@ -60,7 +64,7 @@ class MyLexer(Lexer):
         self.index += 1
 
     
-
+"""
 
 class MyParser(Parser):
     debugfile = "parser.out"
@@ -98,3 +102,5 @@ lexer = MyLexer()
 string_to_parse = "1 + 2 + 3"
 
 print(parser.parse(lexer.tokenize(string_to_parse)))
+
+"""
