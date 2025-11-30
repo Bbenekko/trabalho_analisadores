@@ -2,6 +2,8 @@ from sly import Parser
 from lexer_obsact import ObsLexer
 
 class ObsParser(Parser):
+    debugfile = "parser.out"
+    
     tokens = ObsLexer.tokens
 
     def __init__(self):

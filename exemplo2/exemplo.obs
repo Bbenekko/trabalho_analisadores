@@ -1,8 +1,0 @@
-dispositivos : 
-    lampada [temperatura]
-    ventilador
-fimdispositivos
-
-def temperatura = 30;
-execute ligar em lampada;
-quando temperatura > 25 : alerta para ventilador : "Muito quente!";

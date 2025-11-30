@@ -1,0 +1,743 @@
+Grammar:
+
+Rule 0     S' -> program
+Rule 1     program -> dev_sec cmd_sec
+Rule 2     dev_sec -> DISPOSITIVOS : dev_list FIMDISPOSITIVOS
+Rule 3     dev_list -> device dev_list_tail
+Rule 4     dev_list_tail -> <empty>
+Rule 5     dev_list_tail -> device dev_list_tail
+Rule 6     device -> ID opt_obs
+Rule 7     opt_obs -> <empty>
+Rule 8     opt_obs -> [ ID ]
+Rule 9     cmd_sec -> cmd_list
+Rule 10    cmd_list -> cmd ; cmd_list_tail
+Rule 11    cmd_list_tail -> <empty>
+Rule 12    cmd_list_tail -> cmd ; cmd_list_tail
+Rule 13    cmd -> act
+Rule 14    cmd -> obsact
+Rule 15    cmd -> attrib
+Rule 16    attrib -> DEF ID = val
+Rule 17    obsact -> QUANDO obs : act SENAO nested_act
+Rule 18    obsact -> QUANDO obs : act
+Rule 19    nested_act -> act
+Rule 20    nested_act -> obsact
+Rule 21    obs -> simple_obs obs_tail
+Rule 22    obs_tail -> <empty>
+Rule 23    obs_tail -> AND obs
+Rule 24    simple_obs -> ID OPLOGIC val
+Rule 25    val -> BOOL
+Rule 26    val -> NUM
+Rule 27    act -> DIFUNDIR : MSG ID ARROW [ dev_list_n ]
+Rule 28    act -> DIFUNDIR : MSG ARROW [ dev_list_n ]
+Rule 29    act -> ALERTA PARA ID : MSG , ID
+Rule 30    act -> ALERTA PARA ID : MSG
+Rule 31    act -> EXECUTE action EM ID
+Rule 32    action -> DESLIGAR
+Rule 33    action -> LIGAR
+Rule 34    dev_list_n -> ID dev_list_n_tail
+Rule 35    dev_list_n_tail -> <empty>
+Rule 36    dev_list_n_tail -> , ID dev_list_n_tail
+
+Terminals, with rules where they appear:
+
+,                    : 29 36
+:                    : 2 17 18 27 28 29 30
+;                    : 10 12
+=                    : 16
+ALERTA               : 29 30
+AND                  : 23
+ARROW                : 27 28
+BOOL                 : 25
+DEF                  : 16
+DESLIGAR             : 32
+DIFUNDIR             : 27 28
+DISPOSITIVOS         : 2
+EM                   : 31
+EXECUTE              : 31
+FIMDISPOSITIVOS      : 2
+ID                   : 6 8 16 24 27 29 29 30 31 34 36
+LIGAR                : 33
+MSG                  : 27 28 29 30
+NUM                  : 26
+OPLOGIC              : 24
+PARA                 : 29 30
+QUANDO               : 17 18
+SENAO                : 17
+[                    : 8 27 28
+]                    : 8 27 28
+error                : 
+
+Nonterminals, with rules where they appear:
+
+act                  : 13 17 18 19
+action               : 31
+attrib               : 15
+cmd                  : 10 12
+cmd_list             : 9
+cmd_list_tail        : 10 12
+cmd_sec              : 1
+dev_list             : 2
+dev_list_n           : 27 28
+dev_list_n_tail      : 34 36
+dev_list_tail        : 3 5
+dev_sec              : 1
+device               : 3 5
+nested_act           : 17
+obs                  : 17 18 23
+obs_tail             : 21
+obsact               : 14 20
+opt_obs              : 6
+program              : 0
+simple_obs           : 21
+val                  : 16 24
+
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . dev_sec cmd_sec
+    (2) dev_sec -> . DISPOSITIVOS : dev_list FIMDISPOSITIVOS
+    DISPOSITIVOS    shift and go to state 3
+
+    program                        shift and go to state 1
+    dev_sec                        shift and go to state 2
+
+state 1
+
+    (0) S' -> program .
+
+
+state 2
+
+    (1) program -> dev_sec . cmd_sec
+    (9) cmd_sec -> . cmd_list
+    (10) cmd_list -> . cmd ; cmd_list_tail
+    (13) cmd -> . act
+    (14) cmd -> . obsact
+    (15) cmd -> . attrib
+    (27) act -> . DIFUNDIR : MSG ID ARROW [ dev_list_n ]
+    (28) act -> . DIFUNDIR : MSG ARROW [ dev_list_n ]
+    (29) act -> . ALERTA PARA ID : MSG , ID
+    (30) act -> . ALERTA PARA ID : MSG
+    (31) act -> . EXECUTE action EM ID
+    (17) obsact -> . QUANDO obs : act SENAO nested_act
+    (18) obsact -> . QUANDO obs : act
+    (16) attrib -> . DEF ID = val
+    DIFUNDIR        shift and go to state 10
+    ALERTA          shift and go to state 11
+    EXECUTE         shift and go to state 12
+    QUANDO          shift and go to state 13
+    DEF             shift and go to state 14
+
+    cmd_sec                        shift and go to state 4
+    cmd_list                       shift and go to state 5
+    cmd                            shift and go to state 6
+    act                            shift and go to state 7
+    obsact                         shift and go to state 8
+    attrib                         shift and go to state 9
+
+state 3
+
+    (2) dev_sec -> DISPOSITIVOS . : dev_list FIMDISPOSITIVOS
+    :               shift and go to state 15
+
+
+state 4
+
+    (1) program -> dev_sec cmd_sec .
+    $end            reduce using rule 1 (program -> dev_sec cmd_sec .)
+
+
+state 5
+
+    (9) cmd_sec -> cmd_list .
+    $end            reduce using rule 9 (cmd_sec -> cmd_list .)
+
+
+state 6
+
+    (10) cmd_list -> cmd . ; cmd_list_tail
+    ;               shift and go to state 16
+
+
+state 7
+
+    (13) cmd -> act .
+    ;               reduce using rule 13 (cmd -> act .)
+
+
+state 8
+
+    (14) cmd -> obsact .
+    ;               reduce using rule 14 (cmd -> obsact .)
+
+
+state 9
+
+    (15) cmd -> attrib .
+    ;               reduce using rule 15 (cmd -> attrib .)
+
+
+state 10
+
+    (27) act -> DIFUNDIR . : MSG ID ARROW [ dev_list_n ]
+    (28) act -> DIFUNDIR . : MSG ARROW [ dev_list_n ]
+    :               shift and go to state 17
+
+
+state 11
+
+    (29) act -> ALERTA . PARA ID : MSG , ID
+    (30) act -> ALERTA . PARA ID : MSG
+    PARA            shift and go to state 18
+
+
+state 12
+
+    (31) act -> EXECUTE . action EM ID
+    (32) action -> . DESLIGAR
+    (33) action -> . LIGAR
+    DESLIGAR        shift and go to state 20
+    LIGAR           shift and go to state 21
+
+    action                         shift and go to state 19
+
+state 13
+
+    (17) obsact -> QUANDO . obs : act SENAO nested_act
+    (18) obsact -> QUANDO . obs : act
+    (21) obs -> . simple_obs obs_tail
+    (24) simple_obs -> . ID OPLOGIC val
+    ID              shift and go to state 24
+
+    obs                            shift and go to state 22
+    simple_obs                     shift and go to state 23
+
+state 14
+
+    (16) attrib -> DEF . ID = val
+    ID              shift and go to state 25
+
+
+state 15
+
+    (2) dev_sec -> DISPOSITIVOS : . dev_list FIMDISPOSITIVOS
+    (3) dev_list -> . device dev_list_tail
+    (6) device -> . ID opt_obs
+    ID              shift and go to state 28
+
+    dev_list                       shift and go to state 26
+    device                         shift and go to state 27
+
+state 16
+
+    (10) cmd_list -> cmd ; . cmd_list_tail
+    (11) cmd_list_tail -> .
+    (12) cmd_list_tail -> . cmd ; cmd_list_tail
+    (13) cmd -> . act
+    (14) cmd -> . obsact
+    (15) cmd -> . attrib
+    (27) act -> . DIFUNDIR : MSG ID ARROW [ dev_list_n ]
+    (28) act -> . DIFUNDIR : MSG ARROW [ dev_list_n ]
+    (29) act -> . ALERTA PARA ID : MSG , ID
+    (30) act -> . ALERTA PARA ID : MSG
+    (31) act -> . EXECUTE action EM ID
+    (17) obsact -> . QUANDO obs : act SENAO nested_act
+    (18) obsact -> . QUANDO obs : act
+    (16) attrib -> . DEF ID = val
+    $end            reduce using rule 11 (cmd_list_tail -> .)
+    DIFUNDIR        shift and go to state 10
+    ALERTA          shift and go to state 11
+    EXECUTE         shift and go to state 12
+    QUANDO          shift and go to state 13
+    DEF             shift and go to state 14
+
+    cmd                            shift and go to state 29
+    cmd_list_tail                  shift and go to state 30
+    act                            shift and go to state 7
+    obsact                         shift and go to state 8
+    attrib                         shift and go to state 9
+
+state 17
+
+    (27) act -> DIFUNDIR : . MSG ID ARROW [ dev_list_n ]
+    (28) act -> DIFUNDIR : . MSG ARROW [ dev_list_n ]
+    MSG             shift and go to state 31
+
+
+state 18
+
+    (29) act -> ALERTA PARA . ID : MSG , ID
+    (30) act -> ALERTA PARA . ID : MSG
+    ID              shift and go to state 32
+
+
+state 19
+
+    (31) act -> EXECUTE action . EM ID
+    EM              shift and go to state 33
+
+
+state 20
+
+    (32) action -> DESLIGAR .
+    EM              reduce using rule 32 (action -> DESLIGAR .)
+
+
+state 21
+
+    (33) action -> LIGAR .
+    EM              reduce using rule 33 (action -> LIGAR .)
+
+
+state 22
+
+    (17) obsact -> QUANDO obs . : act SENAO nested_act
+    (18) obsact -> QUANDO obs . : act
+    :               shift and go to state 34
+
+
+state 23
+
+    (21) obs -> simple_obs . obs_tail
+    (22) obs_tail -> .
+    (23) obs_tail -> . AND obs
+    :               reduce using rule 22 (obs_tail -> .)
+    AND             shift and go to state 36
+
+    obs_tail                       shift and go to state 35
+
+state 24
+
+    (24) simple_obs -> ID . OPLOGIC val
+    OPLOGIC         shift and go to state 37
+
+
+state 25
+
+    (16) attrib -> DEF ID . = val
+    =               shift and go to state 38
+
+
+state 26
+
+    (2) dev_sec -> DISPOSITIVOS : dev_list . FIMDISPOSITIVOS
+    FIMDISPOSITIVOS shift and go to state 39
+
+
+state 27
+
+    (3) dev_list -> device . dev_list_tail
+    (4) dev_list_tail -> .
+    (5) dev_list_tail -> . device dev_list_tail
+    (6) device -> . ID opt_obs
+    FIMDISPOSITIVOS reduce using rule 4 (dev_list_tail -> .)
+    ID              shift and go to state 28
+
+    device                         shift and go to state 40
+    dev_list_tail                  shift and go to state 41
+
+state 28
+
+    (6) device -> ID . opt_obs
+    (7) opt_obs -> .
+    (8) opt_obs -> . [ ID ]
+    ID              reduce using rule 7 (opt_obs -> .)
+    FIMDISPOSITIVOS reduce using rule 7 (opt_obs -> .)
+    [               shift and go to state 43
+
+    opt_obs                        shift and go to state 42
+
+state 29
+
+    (12) cmd_list_tail -> cmd . ; cmd_list_tail
+    ;               shift and go to state 44
+
+
+state 30
+
+    (10) cmd_list -> cmd ; cmd_list_tail .
+    $end            reduce using rule 10 (cmd_list -> cmd ; cmd_list_tail .)
+
+
+state 31
+
+    (27) act -> DIFUNDIR : MSG . ID ARROW [ dev_list_n ]
+    (28) act -> DIFUNDIR : MSG . ARROW [ dev_list_n ]
+    ID              shift and go to state 45
+    ARROW           shift and go to state 46
+
+
+state 32
+
+    (29) act -> ALERTA PARA ID . : MSG , ID
+    (30) act -> ALERTA PARA ID . : MSG
+    :               shift and go to state 47
+
+
+state 33
+
+    (31) act -> EXECUTE action EM . ID
+    ID              shift and go to state 48
+
+
+state 34
+
+    (17) obsact -> QUANDO obs : . act SENAO nested_act
+    (18) obsact -> QUANDO obs : . act
+    (27) act -> . DIFUNDIR : MSG ID ARROW [ dev_list_n ]
+    (28) act -> . DIFUNDIR : MSG ARROW [ dev_list_n ]
+    (29) act -> . ALERTA PARA ID : MSG , ID
+    (30) act -> . ALERTA PARA ID : MSG
+    (31) act -> . EXECUTE action EM ID
+    DIFUNDIR        shift and go to state 10
+    ALERTA          shift and go to state 11
+    EXECUTE         shift and go to state 12
+
+    act                            shift and go to state 49
+
+state 35
+
+    (21) obs -> simple_obs obs_tail .
+    :               reduce using rule 21 (obs -> simple_obs obs_tail .)
+
+
+state 36
+
+    (23) obs_tail -> AND . obs
+    (21) obs -> . simple_obs obs_tail
+    (24) simple_obs -> . ID OPLOGIC val
+    ID              shift and go to state 24
+
+    obs                            shift and go to state 50
+    simple_obs                     shift and go to state 23
+
+state 37
+
+    (24) simple_obs -> ID OPLOGIC . val
+    (25) val -> . BOOL
+    (26) val -> . NUM
+    BOOL            shift and go to state 52
+    NUM             shift and go to state 53
+
+    val                            shift and go to state 51
+
+state 38
+
+    (16) attrib -> DEF ID = . val
+    (25) val -> . BOOL
+    (26) val -> . NUM
+    BOOL            shift and go to state 52
+    NUM             shift and go to state 53
+
+    val                            shift and go to state 54
+
+state 39
+
+    (2) dev_sec -> DISPOSITIVOS : dev_list FIMDISPOSITIVOS .
+    DIFUNDIR        reduce using rule 2 (dev_sec -> DISPOSITIVOS : dev_list FIMDISPOSITIVOS .)
+    ALERTA          reduce using rule 2 (dev_sec -> DISPOSITIVOS : dev_list FIMDISPOSITIVOS .)
+    EXECUTE         reduce using rule 2 (dev_sec -> DISPOSITIVOS : dev_list FIMDISPOSITIVOS .)
+    QUANDO          reduce using rule 2 (dev_sec -> DISPOSITIVOS : dev_list FIMDISPOSITIVOS .)
+    DEF             reduce using rule 2 (dev_sec -> DISPOSITIVOS : dev_list FIMDISPOSITIVOS .)
+
+
+state 40
+
+    (5) dev_list_tail -> device . dev_list_tail
+    (4) dev_list_tail -> .
+    (5) dev_list_tail -> . device dev_list_tail
+    (6) device -> . ID opt_obs
+    FIMDISPOSITIVOS reduce using rule 4 (dev_list_tail -> .)
+    ID              shift and go to state 28
+
+    device                         shift and go to state 40
+    dev_list_tail                  shift and go to state 55
+
+state 41
+
+    (3) dev_list -> device dev_list_tail .
+    FIMDISPOSITIVOS reduce using rule 3 (dev_list -> device dev_list_tail .)
+
+
+state 42
+
+    (6) device -> ID opt_obs .
+    ID              reduce using rule 6 (device -> ID opt_obs .)
+    FIMDISPOSITIVOS reduce using rule 6 (device -> ID opt_obs .)
+
+
+state 43
+
+    (8) opt_obs -> [ . ID ]
+    ID              shift and go to state 56
+
+
+state 44
+
+    (12) cmd_list_tail -> cmd ; . cmd_list_tail
+    (11) cmd_list_tail -> .
+    (12) cmd_list_tail -> . cmd ; cmd_list_tail
+    (13) cmd -> . act
+    (14) cmd -> . obsact
+    (15) cmd -> . attrib
+    (27) act -> . DIFUNDIR : MSG ID ARROW [ dev_list_n ]
+    (28) act -> . DIFUNDIR : MSG ARROW [ dev_list_n ]
+    (29) act -> . ALERTA PARA ID : MSG , ID
+    (30) act -> . ALERTA PARA ID : MSG
+    (31) act -> . EXECUTE action EM ID
+    (17) obsact -> . QUANDO obs : act SENAO nested_act
+    (18) obsact -> . QUANDO obs : act
+    (16) attrib -> . DEF ID = val
+    $end            reduce using rule 11 (cmd_list_tail -> .)
+    DIFUNDIR        shift and go to state 10
+    ALERTA          shift and go to state 11
+    EXECUTE         shift and go to state 12
+    QUANDO          shift and go to state 13
+    DEF             shift and go to state 14
+
+    cmd                            shift and go to state 29
+    cmd_list_tail                  shift and go to state 57
+    act                            shift and go to state 7
+    obsact                         shift and go to state 8
+    attrib                         shift and go to state 9
+
+state 45
+
+    (27) act -> DIFUNDIR : MSG ID . ARROW [ dev_list_n ]
+    ARROW           shift and go to state 58
+
+
+state 46
+
+    (28) act -> DIFUNDIR : MSG ARROW . [ dev_list_n ]
+    [               shift and go to state 59
+
+
+state 47
+
+    (29) act -> ALERTA PARA ID : . MSG , ID
+    (30) act -> ALERTA PARA ID : . MSG
+    MSG             shift and go to state 60
+
+
+state 48
+
+    (31) act -> EXECUTE action EM ID .
+    ;               reduce using rule 31 (act -> EXECUTE action EM ID .)
+    SENAO           reduce using rule 31 (act -> EXECUTE action EM ID .)
+
+
+state 49
+
+    (17) obsact -> QUANDO obs : act . SENAO nested_act
+    (18) obsact -> QUANDO obs : act .
+    SENAO           shift and go to state 61
+    ;               reduce using rule 18 (obsact -> QUANDO obs : act .)
+
+
+state 50
+
+    (23) obs_tail -> AND obs .
+    :               reduce using rule 23 (obs_tail -> AND obs .)
+
+
+state 51
+
+    (24) simple_obs -> ID OPLOGIC val .
+    AND             reduce using rule 24 (simple_obs -> ID OPLOGIC val .)
+    :               reduce using rule 24 (simple_obs -> ID OPLOGIC val .)
+
+
+state 52
+
+    (25) val -> BOOL .
+    AND             reduce using rule 25 (val -> BOOL .)
+    :               reduce using rule 25 (val -> BOOL .)
+    ;               reduce using rule 25 (val -> BOOL .)
+
+
+state 53
+
+    (26) val -> NUM .
+    AND             reduce using rule 26 (val -> NUM .)
+    :               reduce using rule 26 (val -> NUM .)
+    ;               reduce using rule 26 (val -> NUM .)
+
+
+state 54
+
+    (16) attrib -> DEF ID = val .
+    ;               reduce using rule 16 (attrib -> DEF ID = val .)
+
+
+state 55
+
+    (5) dev_list_tail -> device dev_list_tail .
+    FIMDISPOSITIVOS reduce using rule 5 (dev_list_tail -> device dev_list_tail .)
+
+
+state 56
+
+    (8) opt_obs -> [ ID . ]
+    ]               shift and go to state 62
+
+
+state 57
+
+    (12) cmd_list_tail -> cmd ; cmd_list_tail .
+    $end            reduce using rule 12 (cmd_list_tail -> cmd ; cmd_list_tail .)
+
+
+state 58
+
+    (27) act -> DIFUNDIR : MSG ID ARROW . [ dev_list_n ]
+    [               shift and go to state 63
+
+
+state 59
+
+    (28) act -> DIFUNDIR : MSG ARROW [ . dev_list_n ]
+    (34) dev_list_n -> . ID dev_list_n_tail
+    ID              shift and go to state 65
+
+    dev_list_n                     shift and go to state 64
+
+state 60
+
+    (29) act -> ALERTA PARA ID : MSG . , ID
+    (30) act -> ALERTA PARA ID : MSG .
+    ,               shift and go to state 66
+    ;               reduce using rule 30 (act -> ALERTA PARA ID : MSG .)
+    SENAO           reduce using rule 30 (act -> ALERTA PARA ID : MSG .)
+
+
+state 61
+
+    (17) obsact -> QUANDO obs : act SENAO . nested_act
+    (19) nested_act -> . act
+    (20) nested_act -> . obsact
+    (27) act -> . DIFUNDIR : MSG ID ARROW [ dev_list_n ]
+    (28) act -> . DIFUNDIR : MSG ARROW [ dev_list_n ]
+    (29) act -> . ALERTA PARA ID : MSG , ID
+    (30) act -> . ALERTA PARA ID : MSG
+    (31) act -> . EXECUTE action EM ID
+    (17) obsact -> . QUANDO obs : act SENAO nested_act
+    (18) obsact -> . QUANDO obs : act
+    DIFUNDIR        shift and go to state 10
+    ALERTA          shift and go to state 11
+    EXECUTE         shift and go to state 12
+    QUANDO          shift and go to state 13
+
+    act                            shift and go to state 67
+    nested_act                     shift and go to state 68
+    obsact                         shift and go to state 69
+
+state 62
+
+    (8) opt_obs -> [ ID ] .
+    ID              reduce using rule 8 (opt_obs -> [ ID ] .)
+    FIMDISPOSITIVOS reduce using rule 8 (opt_obs -> [ ID ] .)
+
+
+state 63
+
+    (27) act -> DIFUNDIR : MSG ID ARROW [ . dev_list_n ]
+    (34) dev_list_n -> . ID dev_list_n_tail
+    ID              shift and go to state 65
+
+    dev_list_n                     shift and go to state 70
+
+state 64
+
+    (28) act -> DIFUNDIR : MSG ARROW [ dev_list_n . ]
+    ]               shift and go to state 71
+
+
+state 65
+
+    (34) dev_list_n -> ID . dev_list_n_tail
+    (35) dev_list_n_tail -> .
+    (36) dev_list_n_tail -> . , ID dev_list_n_tail
+    ]               reduce using rule 35 (dev_list_n_tail -> .)
+    ,               shift and go to state 73
+
+    dev_list_n_tail                shift and go to state 72
+
+state 66
+
+    (29) act -> ALERTA PARA ID : MSG , . ID
+    ID              shift and go to state 74
+
+
+state 67
+
+    (19) nested_act -> act .
+    ;               reduce using rule 19 (nested_act -> act .)
+
+
+state 68
+
+    (17) obsact -> QUANDO obs : act SENAO nested_act .
+    ;               reduce using rule 17 (obsact -> QUANDO obs : act SENAO nested_act .)
+
+
+state 69
+
+    (20) nested_act -> obsact .
+    ;               reduce using rule 20 (nested_act -> obsact .)
+
+
+state 70
+
+    (27) act -> DIFUNDIR : MSG ID ARROW [ dev_list_n . ]
+    ]               shift and go to state 75
+
+
+state 71
+
+    (28) act -> DIFUNDIR : MSG ARROW [ dev_list_n ] .
+    ;               reduce using rule 28 (act -> DIFUNDIR : MSG ARROW [ dev_list_n ] .)
+    SENAO           reduce using rule 28 (act -> DIFUNDIR : MSG ARROW [ dev_list_n ] .)
+
+
+state 72
+
+    (34) dev_list_n -> ID dev_list_n_tail .
+    ]               reduce using rule 34 (dev_list_n -> ID dev_list_n_tail .)
+
+
+state 73
+
+    (36) dev_list_n_tail -> , . ID dev_list_n_tail
+    ID              shift and go to state 76
+
+
+state 74
+
+    (29) act -> ALERTA PARA ID : MSG , ID .
+    ;               reduce using rule 29 (act -> ALERTA PARA ID : MSG , ID .)
+    SENAO           reduce using rule 29 (act -> ALERTA PARA ID : MSG , ID .)
+
+
+state 75
+
+    (27) act -> DIFUNDIR : MSG ID ARROW [ dev_list_n ] .
+    ;               reduce using rule 27 (act -> DIFUNDIR : MSG ID ARROW [ dev_list_n ] .)
+    SENAO           reduce using rule 27 (act -> DIFUNDIR : MSG ID ARROW [ dev_list_n ] .)
+
+
+state 76
+
+    (36) dev_list_n_tail -> , ID . dev_list_n_tail
+    (35) dev_list_n_tail -> .
+    (36) dev_list_n_tail -> . , ID dev_list_n_tail
+    ]               reduce using rule 35 (dev_list_n_tail -> .)
+    ,               shift and go to state 73
+
+    dev_list_n_tail                shift and go to state 77
+
+state 77
+
+    (36) dev_list_n_tail -> , ID dev_list_n_tail .
+    ]               reduce using rule 36 (dev_list_n_tail -> , ID dev_list_n_tail .)
